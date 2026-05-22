@@ -46,7 +46,7 @@ src/main/java/com/itheima/
 複製本專案至本地端：
 
 Bash
-git clone [https://github.com/你的帳號名稱/TextFightingGame.git](https://github.com/你的帳號名稱/TextFightingGame.git)
+git clone [https://github.com/sb111919/TextFightingGame.git](https://github.com/你的帳號名稱/TextFightingGame.git)
 
 使用 IntelliJ IDEA 開啟專案。
 
