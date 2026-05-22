@@ -28,7 +28,6 @@ public class FightingGame {
         int count = 1;
         int wins = 0;
 
-        // ✨ 修正：確保玩家活著，且清單內還有怪物可以打
         while (player.isAlive() && enemyList.size() > 0) {
             if (wins != 0) {
                 for (int i = 0; i < enemyList.size(); i++) {
@@ -62,7 +61,6 @@ public class FightingGame {
                 if (!enemyCharacter.isAlive()) {
                     System.out.println("🎉 你擊敗了 " + enemyCharacter.getName() + "!");
                     wins++;
-                    enemyList.remove(index); // ✨ 關鍵：把死掉的怪物移出清單！
                     break;
                 }
 
@@ -82,7 +80,6 @@ public class FightingGame {
             if (player.isAlive()) {
                 int heal = r.nextInt(20, 41);
 
-                // ✨ 修正 73 行語法錯誤：計算新血量並存回 player 物件中
                 int newHp = player.getHp() + heal;
                 if (newHp > player.getMaxHp()) {
                     newHp = player.getMaxHp(); // 防呆：血量不能超過上限
@@ -122,7 +119,7 @@ public class FightingGame {
         System.out.println("\n=====================");
         System.out.println("遊戲結束");
         System.out.println("總勝場"+wins);
-        System.out.println("感謝遊玩文字版格購遊戲");
+        System.out.println("感謝遊玩文字版格鬥遊戲");
         System.exit(0);
     }
 
@@ -132,7 +129,7 @@ public class FightingGame {
         Random r = new Random();
         int num = r.nextInt(10);
 
-        // 假設技能屬性有開放直接存取，或是你有寫 getSkill()
+
         if (num >= 5) {
             action = enemyCharacter.skill;
         }
@@ -140,7 +137,6 @@ public class FightingGame {
         switch (action) {
             case "普通攻擊":
                 System.out.println("⚔️ 敵人採取了普通攻擊");
-                // ✅ 修正：用變數接住傷害，並讓玩家實質扣血
                 int dmg1 = calculateDamage(enemyCharacter.getAttack(), player.getDef());
                 player.takeDamage(dmg1);
                 System.out.println(enemyCharacter.getName() + " 對你造成了 " + dmg1 + " 點傷害！");
@@ -213,7 +209,7 @@ public class FightingGame {
                 if(player.getHp()>10){
                     player.takeDamage(10);
                   int damage2 =  calculateDamage((int)(player.getAttack()*1.8), enemy.getDef());
-                    System.out.println("消耗10點生命，你對"+enemy+"造成了"+damage2+"點傷害");
+                    System.out.println("消耗10點生命，你對"+enemy.getName()+"造成了"+damage2+"點傷害");
                     enemy.takeDamage(damage2);
                 }else {
                     System.out.println("血量不足，攻擊失敗");
